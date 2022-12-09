@@ -10,7 +10,8 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       review: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
       },
       rating: {
         type: Sequelize.INTEGER
@@ -19,10 +20,22 @@ module.exports = {
         type: Sequelize.BOOLEAN
       },
       userId: {
-        type: Sequelize.INTEGER
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        onDelete: 'CASCADE',
+        references: {
+          model: 'users',
+          key: 'id'
+      }
       },
       bookId: {
-        type: Sequelize.INTEGER
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        onDelete: 'CASCADE',
+        references: {
+          model: 'books',
+          key: 'id'
+      }
       },
       createdAt: {
         allowNull: false,

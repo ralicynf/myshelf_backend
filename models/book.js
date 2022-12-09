@@ -11,11 +11,18 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       Book.belongsTo(models.User, {foreignKey: 'userId'})
+      Book.hasMany(models.BookReport, {foreignKey: 'bookId'})
     }
   }
   Book.init({
-    title: DataTypes.STRING,
-    author: DataTypes.STRING,
+    title: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    author: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
     completed: DataTypes.BOOLEAN,
     userId: {
       type: DataTypes.INTEGER,
