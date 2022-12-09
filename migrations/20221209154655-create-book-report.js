@@ -20,7 +20,7 @@ module.exports = {
         type: Sequelize.BOOLEAN
       },
       userId: {
-        type: DataTypes.INTEGER,
+        type: Sequelize.INTEGER,
         allowNull: false,
         onDelete: 'CASCADE',
         references: {
@@ -29,7 +29,7 @@ module.exports = {
       }
       },
       bookId: {
-        type: DataTypes.INTEGER,
+        type: Sequelize.INTEGER,
         allowNull: false,
         onDelete: 'CASCADE',
         references: {
