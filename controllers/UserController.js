@@ -1,5 +1,6 @@
 const { User } = require('../models')
 
+// get all users by their ID number
 const getAllUsers = async (req, res) => {
     console.log('hello')
     try {
@@ -10,6 +11,7 @@ const getAllUsers = async (req, res) => {
     }
 }
 
+//get a single user by their ID
 const getUserById = async (req, res) => {
     try {
         const { user_id } = req.params
@@ -20,6 +22,7 @@ const getUserById = async (req, res) => {
     }
 }
 
+// create new User
 const createUser = async (req, res) => {
     try {
         const user = await new User(req.body)
@@ -32,6 +35,7 @@ const createUser = async (req, res) => {
     }
 }
 
+//update user information
 const updateUser = async (req, res) => {
     try {
       const user = await User.update(
@@ -44,7 +48,8 @@ const updateUser = async (req, res) => {
     }
   }
 
-  const deleteUser = async (req, res) => {
+//delete a user by their id number
+const deleteUser = async (req, res) => {
     try {
       await User.destroy({ where: { id: req.params.user_id } })
       res.send({
