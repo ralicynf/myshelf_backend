@@ -1,4 +1,4 @@
-const { BookReport } = require('../models')
+const { BookReport, Book } = require('../models')
 
 const createBookReport = async (req, res) => {
     try {
@@ -24,6 +24,23 @@ const getBookReportById = async (req, res) => {
         const { bookReport_id } = req.params
         const bookReport = await BookReport.findByPk(bookReport_id)
         res.send(bookReport)
+    } catch (error) {
+        throw error
+    }
+}
+
+const getBookReportByBook = async (req, res) => {
+    try {
+        const bookReports = await BookReport.findAll({
+            where: { bookId: req.params.book_id},
+            include: [
+                {
+                    model: Book,
+                    attributes: ['title', 'author']
+                }
+            ]
+        })
+        res.send(bookReports)
     } catch (error) {
         throw error
     }
@@ -58,6 +75,7 @@ module.exports = {
     createBookReport,
     getAllBookReports,
     getBookReportById,
+    getBookReportByBook,
     updateBookReport, 
     deleteBookReport
 }
