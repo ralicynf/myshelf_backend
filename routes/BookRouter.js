@@ -13,6 +13,8 @@ Router.get('/', controller.getAllBooks)
 
 Router.get('/:book_id', controller.getBookById)
 
+Router.get('/book/:user_id', controller.getBooksByUser)
+
 Router.put(
     '/:book_id',
     middleware.stripToken,

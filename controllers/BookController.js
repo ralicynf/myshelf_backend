@@ -1,4 +1,4 @@
-const { Book } = require('../models')
+const { Book, User } = require('../models')
 
 //create Book
 const createBook = async (req, res) => {
@@ -32,6 +32,26 @@ const getBookById = async (req, res) => {
     }
 }
 
+//view books added by user
+const getBooksByUser = async (req, res) => {
+    try {
+        const { user_id } = req.params
+        const books = await Event.findAll({
+            where: { userId: user_id},
+            include: [
+                {
+                    model: User,
+                    attributes: ['id', 'username', 'name', 'email']
+                }
+            ]
+        })
+        res.send(books)
+    } catch (error) {
+        throw error 
+    }
+}
+
+
 //update Book
 const updateBook = async (req, res) => {
     try {
@@ -64,5 +84,6 @@ module.exports = {
     getAllBooks,
     getBookById,
     updateBook,
-    deleteBook
+    deleteBook,
+    getBooksByUser
 }
