@@ -3,8 +3,8 @@ const controller = require('../controllers/BookReportController')
 const middleware = require('../middleware')
 
 Router.get('/', controller.getAllBookReports)
-Router.get('/b/:bookReport_id', controller.getBookReportById)
-Router.get('/:book_id', controller.getBookReportByBook)
+Router.get('/:bookReport_id', controller.getBookReportById)
+Router.get('/b/:book_id', controller.getBookReportByBook)
 
 Router.post(
     '/', 
