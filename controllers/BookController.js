@@ -35,12 +35,13 @@ const getBookById = async (req, res) => {
 //view books added by user
 const getBooksByUser = async (req, res) => {
     try {
-        const { user_id } = req.params
-        const books = await Event.findAll({
-            where: { userId: user_id},
+        // const { user_id } = req.params
+        const books = await Book.findAll({
+            where: { userId: req.params.user_id},
             include: [
                 {
                     model: User,
+                    as: "creator",
                     attributes: ['id', 'username', 'name', 'email']
                 }
             ]
