@@ -7,7 +7,7 @@ Router.get('/:bookReport_id', controller.getBookReportById)
 Router.get('/b/:book_id', controller.getBookReportByBook)
 
 Router.post(
-    '/', 
+    '/b/:book_id', 
     middleware.stripToken,
     middleware.verifyToken,
     controller.createBookReport
